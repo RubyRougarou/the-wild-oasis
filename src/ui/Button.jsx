@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components";
-import GlobalStyles from "../styles/GlobalStyles.js";
 
 const sizes = {
   small: css`
