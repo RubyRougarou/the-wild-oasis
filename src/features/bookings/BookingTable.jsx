@@ -4,9 +4,11 @@ import Menus from "../../ui/Menus";
 import Empty from "../../ui/Empty.jsx";
 import { useBookings } from "./useBookings.js";
 import Spinner from "../../ui/Spinner.jsx";
+import { useSearchParams } from "react-router-dom";
 
 function BookingTable() {
   const { isLoading, bookings } = useBookings();
+  const [searchParams] = useSearchParams();
 
   if (isLoading) return <Spinner />;
 
