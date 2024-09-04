@@ -1,13 +1,17 @@
+/* eslint-disable react/prop-types */
+
+import { useSearchParams } from "react-router-dom";
+
 import BookingRow from "./BookingRow";
 import Table from "../../ui/Table";
 import Menus from "../../ui/Menus";
 import Empty from "../../ui/Empty.jsx";
 import { useBookings } from "./useBookings.js";
 import Spinner from "../../ui/Spinner.jsx";
-import { useSearchParams } from "react-router-dom";
+import Pagination from "../../ui/Pagination.jsx";
 
 function BookingTable() {
-  const { isLoading, bookings } = useBookings();
+  const { isLoading, bookings, count } = useBookings();
   const [searchParams] = useSearchParams();
 
   if (isLoading) return <Spinner />;
@@ -32,6 +36,10 @@ function BookingTable() {
             <BookingRow key={booking.id} booking={booking} />
           )}
         />
+
+        <Table.Footer>
+          <Pagination count={count} />
+        </Table.Footer>
       </Table>
     </Menus>
   );
