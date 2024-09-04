@@ -14,6 +14,7 @@ import Settings from "./pages/Settings.jsx";
 import Users from "./pages/Users.jsx";
 import AppLayout from "./ui/AppLayout.jsx";
 import Booking from "./pages/Booking.jsx";
+import Checkin from "./pages/Checkin.jsx";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -35,6 +36,7 @@ function App() {
             <Route path={"account"} element={<Account />} />
             <Route path={"bookings"} element={<Bookings />} />
             <Route path={"bookings/:bookingId"} element={<Booking />} />
+            <Route path={"checkin/:bookingId"} element={<Checkin />} />
             <Route path={"cabins"} element={<Cabins />} />
             <Route path={"dashboard"} element={<Dashboard />} />
             <Route index element={<Navigate replace to={"dashboard"} />} />
