@@ -5,7 +5,7 @@ import Button from "./Button";
 import Heading from "./Heading";
 
 const StyledConfirmDelete = styled.div`
-  width: 46rem;
+  width: 47rem;
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
