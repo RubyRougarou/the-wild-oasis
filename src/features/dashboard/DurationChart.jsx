@@ -1,4 +1,14 @@
 import styled from "styled-components";
+import Heading from "../../ui/Heading.jsx";
+import {
+  Cell,
+  Legend,
+  Pie,
+  PieChart,
+  ResponsiveContainer,
+  Tooltip,
+} from "recharts";
+import { useDarkMode } from "../../context/DarkModeContext.jsx";
 
 const ChartBox = styled.div`
   /* Box */
@@ -10,7 +20,7 @@ const ChartBox = styled.div`
   grid-column: 3 / span 2;
 
   & > *:first-child {
-    margin-bottom: 1.6rem;
+    margin-bottom: 1.6rem; //1.6rem   or  -0.8rem
   }
 
   & .recharts-pie-label-text {
@@ -109,7 +119,7 @@ function prepareData(startData, stays) {
 
   function incArrayValue(arr, field) {
     return arr.map((obj) =>
-      obj.duration === field ? { ...obj, value: obj.value + 1 } : obj
+      obj.duration === field ? { ...obj, value: obj.value + 1 } : obj,
     );
   }
 
@@ -130,3 +140,48 @@ function prepareData(startData, stays) {
 
   return data;
 }
+
+function DurationChart({ confirmedStays }) {
+  const { isDarkMode } = useDarkMode();
+  const startData = isDarkMode ? startDataDark : startDataLight;
+  const data = prepareData(startData, confirmedStays);
+
+  return (
+    <ChartBox>
+      <Heading as={"h2"}>Stay duration summary</Heading>
+      <ResponsiveContainer width={"100%"} height={240}>
+        <PieChart>
+          <Pie
+            data={data}
+            nameKey={"duration"}
+            dataKey={"value"}
+            innerRadius={75}
+            outerRadius={100}
+            cx={"50%"}
+            cy={"49%"}
+            paddingAngle={2.4}
+          >
+            {data.map((entry) => (
+              <Cell
+                fill={entry.color}
+                stroke={entry.color}
+                key={entry.duration}
+              />
+            ))}
+          </Pie>
+          <Tooltip />
+          <Legend
+            verticalAlign={"middle"}
+            align={"left"}
+            width={"36%"}
+            layout={"vertical"}
+            iconType={"circle"}
+            iconSize={15}
+          />
+        </PieChart>
+      </ResponsiveContainer>
+    </ChartBox>
+  );
+}
+
+export default DurationChart;
