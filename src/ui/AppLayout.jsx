@@ -17,7 +17,7 @@ const StyledAppLayout = styled.div`
 `;
 
 const Container = styled.div`
-  max-width: 92rem;
+  max-width: 115rem;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
